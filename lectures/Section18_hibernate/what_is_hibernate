@@ -1,0 +1,70 @@
+What is Hibernate?
+- A framework for persisting / saving Java objects in a database
+
+Benefits of Hibernate
+- handles all of the low-level SQL
+- minimizes the amount of JDBC code you have to develop
+- Provides the Object to Relational Mapping (ORM)
+
+ORM
+- defines mapping between Java class and db table
+
+Student theStudent = new Student("John", "Doe", "john@luv2code.com")
+// save it to db
+int theId = (Integer) session.save(theStudent)
+// retrieve from db using the primary key
+Student myStudent = session.get(Student.class, theId);
+
+Querying
+Query query = session.createQuery("from Student"); // Hibernate Query Language (HQL)
+List<Student> students = query.list();
+
+Hibernate and JDBC
+- Hibernate uses JDBC for all db communications
+- Hibernate does a lot of low-level JDBC API
+
+Hiernate Dev Process
+1. Add hibernate config file
+2. Annotate Java Class
+3. Develop Java Code to perform db operations
+
+Hibernate Configuration
+- Configuration file tells hibernate how to connect to the db
+- basically, jdbc url
+
+Annotating Java Class
+- Entity Class: Java class that is mapped to a database table (getters/setters)
+- How do we do?
+    1. Map class to db table
+        @Entity, @Table(name="student")
+    2. Map fields to db columns
+        @Id // primary key
+        @Column(name="id")
+        private int id;
+
+        @Column(name="first_name") // name can be anything
+        private Stirng firstName;
+
+FAQ: Can Hibernate generate database tables based on the Java code?
+https://www.dineshonjava.com/hibernate/hbm2ddl-configuration-and-name/
+
+Key Players we need to be aware of from Hibernate
+1. SessionFactory
+- reads the hibernate config file, gets a connection to the database, and it'll create the session objects for us
+- a heavy-weight object: You only create it once in your application, and then you simply reuse that same SessionFactory
+
+2. Session
+- a wrapper around a JDBC connection to the database.
+- the main object for saving and retrieving objects to the database.
+- a short-lived object
+- Retrieve from SessionFactory
+
+Hibernate ID Generation Strategies
+- GenerationType.AUTO : Pick an appropriate strategy for the particular db
+- GenerationType.IDENTITY : Assign primary keys using db identity column
+- GenerationType.SEQUENCE : Assign primary keys using a db sequence
+- GenerationType.Table : Assign primary keys using an underlying db table to ensure uniqueness
+
+
+
+

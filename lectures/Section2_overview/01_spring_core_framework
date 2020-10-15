@@ -1,0 +1,17 @@
+Goals of Spring
+- Lightweight development with Java POJOS (Plain Old Java Objects)
+- Dependency injection to promote loose coupling
+- Declarative programming with Aspect-Oriented-Programming (AOP)
+- Minimize boilerplate Java code
+
+Spring Architecture
+- Core Container : factory for creating beans, manage bean dependencies
+- AOP : allows you to create applicationwide services like logging, security, transactions, instrumentation
+        you can apply these services to your objects in a declarative fasion, so no need to modify you code to have support for this
+- Data Access Layer : JDBC, ORM, Transactions, JMS,
+- Web Layer: Full MVC Framework (Servlet, WebSocket, Web)
+- Infrastructure: instrumentation model
+- Test Layer: mock, integration, unit
+
+
+

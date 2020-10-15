@@ -1,0 +1,50 @@
+
+Java Configuration
+- Instead of configuring Spring container using XML, Configure the Spring container with Java code
+
+
+Reminder: 3 ways of configuring Spring Container
+1. Full XML Config
+2. XML Component Scan
+3. Java ConfigurationClass
+
+Development Process - java configuration
+1. Create a Java class and annotate as @Configuration
+@Configuration
+public class SportConfig {
+}
+2. Add component scanning support: @ComponentScan (optional)
+@Configuration
+@ComponentScan("com.example.springdemo")
+public class SportConfig {
+}
+3. Read Spring Java configuration class
+AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SportConfig.class);
+4. Retrieve bean from Spring container
+getBean
+
+Development Process - Defining Spring Beans
+1. Define method to expose bean
+2. Inject bean dependencies
+3. Read Spring Java configuration class
+4. Retrieve bean from Spring Container
+
+FAQ: What is a real-time use case for @Bean?
+- think of the @Bean annotation was a wrapper / adapter for third-party classes.
+  You want to make the third-party classes available to your Spring framework application context.
+
+ex)
+@Bean
+    public S3Client remoteClient() {
+
+            // Create an S3 client to connect to AWS S3
+            S3Client s3Client = S3Client.builder().region(Region.of(region))
+                    .credentialsProvider(StaticCredentialsProvider.create(awsCreds)).build();
+
+            return s3Client;
+    }
+@Service
+    public class InsuranceClaimsServiceImpl implements ClaimsService {
+
+        @Autowired
+        private S3Client remoteClient;

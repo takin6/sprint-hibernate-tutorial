@@ -1,0 +1,26 @@
+Inversion of Control
+- The design process of externalizing, the construction and management of your objects
+- Your application is going to outsource the creation and management of the objects
+- That outsourcing will be handled by a object factory
+
+Primary Functions of Spring Container
+- Create and manage objects (inversion of control) - with object factory
+- Inject object's dependencies (Dependency Injection)
+
+Configuring Spring Container
+- XML configuration file
+- Java Annotations
+- Java Source Code
+
+Spring Development Process
+Step1. Configure your Spring Beans (Java object)
+Step2. Create a Spring Container
+- Spring container is generally known as ApplicationContext
+- Specialized Implementations
+    - ClassPathXmlApplicationContext
+    - AnnotationConfigApplicationContext
+    - GenericWebApplicationContext
+    - others...
+- ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml")
+Step3. Retrieve Beans from Container
+- Coach theCoach = context.getBean("myCoach", Coach.class);

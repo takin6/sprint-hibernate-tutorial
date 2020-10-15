@@ -1,0 +1,100 @@
+Spring MVC Form Tags
+- Spring MVC Form Tags are the building block for a web page
+- Form tags are configurable and reusable for a web page
+
+Data Binding
+- Spring MVC Form Tags can make use of data binding
+- Automatically setting / retrieve data from a Java object / bean
+
+Spring MVC Form Tags
+- Form tags will generate HTML for you
+form:form
+form:input
+form:textarea
+form:checkbox
+form:radiobutton
+form:select
+
+
+==================================================================
+VALIDATION
+==================================================================
+Java's Standard Bean Validation API
+- Java has a standard Bean Validation API
+- Defines a metadata model and API for entity validation
+- Not tied to either the web tier or the persistence tier
+
+Bean Validation Featuers
+- Validation Feature
+    required, validate length, validate numbers, validate with regex, custom validation
+- @NotNull, @Min, @Max, @Size, @Pattern, @Future/@Past(for dates) ...
+
+Java's Standard Bean Validation API
+- Java's standard Bean Validation API(JSR-303/309)
+- Only a specification... vendor independent... portable
+- BUT we still need an implementation
+
+The Hibernate Team to the rescue!
+- started as ORM project
+- fully compliant JSR-303/309 implementation
+- www.hibernate.org/validator
+
+Implementation
+1. Add validation rule to Customer class
+@NotNull(message="is required")
+2. Display error message on HTML form
+<form:errors path="lastName" cssClass="error">
+3. Perform validation in Controller class - use @Valid annotation
+public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer, BindingResult theBindingReBsult)
+
+Custom Validation - @InitBinder
+- @InitBinder annotation works as a pre-processor
+- It will pre-process each web request to our controller
+- Method annotated with @InitBinder is executed
+
+Validate a Number Range
+- Add a new input field on our form for: Free Passes
+- User can only enter a range: 0 to 10
+
+Custom Validation
+- Perform custom validation based on your business rules
+- Custom validation returns boolean value for pass / fail(true/false)
+
+Create a customJava Annotation... from Scratch!!
+- So far, we've used predefined validation rules
+- For custom validation... we will create a CUSTOM JAVA annotation
+@CourseCode(value="LUV", message="must start with LUV")
+            must start with,    error message if validation fails!
+
+Creating annotation
+@Constraint(validatedBy = CourseCodeConstraintValidator.class) // helper class that contains business rules/vlaidation logic
+@Target( {ElementType.METHOD, ElementType.FIELD} ) // can apply our annotation to a method or field
+@Retention(RetentionPolicy.RUNTIME) // when to process??, runtime or compile time
+@public @interface CourseCode {
+  public String value() default "LUV";
+
+  public String message() default "must start with LUV";
+}
+
+--- USAGE ---
+@CourseCode(value="LUV", messge="must start with LUV")
+private String coursecode;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

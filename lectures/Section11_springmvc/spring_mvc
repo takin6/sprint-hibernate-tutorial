@@ -1,0 +1,70 @@
+What is Spring MVC?
+- Framework for building web applications in Java
+- Based on MVC design pattern
+- Leverage featuers of the Core Spring Framework(IoC, DI)
+
+Flow
+Web Browser -> Front Controller ->(Model) Controller -> (Model) View Model -> Web Browser
+
+Spring MVC Benefits
+- The Spring way fo building web app UIs in Java
+- Leverage a set of reusable UI components
+- Help manage application state for web requests
+- Process from data: validation, conversion etc
+- Flexible configuration for the view layer
+
+================================================================================
+Spring MVC - Behind the Scenes
+================================================================================
+Components of a Spring MVC Application
+- A set of web pages to layout UI Components
+- A collection of Spring beans (controllers, services, etc...)
+- Spring configuration (XML, Annotations or Java)
+
+Spring MVC Front Controller
+- Front controller known as DispatcherServlet
+  - Part of the Spring Framework
+  - Already developed by Spring Dev Team (jar files)
+- You will Create
+  - Model objects (contain data), View templates (JSP), Controller classes (business logic)
+
+Controller
+- Code created by developer
+- Contains your business logic
+  - Handle the request
+  - Store / retrieve data (db, web service)
+  - Place data in model
+- Send to appropriate view template
+
+Model
+- contains your data
+- Store / retrieve data via backend systems
+  - db / web services
+  - Use a Spring bean if you like
+- Place your data in the model
+  - Data can be any Java object / collection
+
+View Template
+- Sprint MVC is flexible
+  - supports many view templates (Thymeleaf, Groovy, Velocity, Freemarker...)
+- Most common is JSP (java server pages) + JSTL (jsp standard tag library)
+- Developer creates a page -> DIsplays data
+
+
+================================================================================
+Development
+================================================================================
+Process (Controller)
+1. Create Controller class
+2. Define Controller method
+3. Add Request Mapping to Controller method
+4. Return View Name
+5. Develop View Page
+
+FAQ: How Does Component Scan Work - Your Package Names are Different!
+- For the Spring attribute:  base-package="com.luv2code.springdemo"
+- Spring will recursively scan for components starting at the base package: "com.luv2code.springdemo"
+- When I say "recursive", it means that Spring will start at the base package and scan all sub packages.
+
+FAQ: How to use CSS, JavaScript and Images in Spring MVC Web App
+https://www.udemy.com/course/spring-hibernate-tutorial/learn/lecture/5608584#overview

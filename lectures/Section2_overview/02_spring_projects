@@ -1,0 +1,6 @@
+Spring Projects
+- Additional Spring modules built-on top of the core Spring Framework
+    - Spring Cloud, Spring Data
+    - Spring Batch, Spring Security
+    - Spring for Android, Spring Web Flow
+    - Spring Web Services, Spring LDAP

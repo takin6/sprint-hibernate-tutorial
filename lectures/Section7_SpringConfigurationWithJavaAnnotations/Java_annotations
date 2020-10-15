@@ -1,0 +1,18 @@
+What are Java Annotations?
+- Special labels/markers added to Java classes
+- Provide meta-data abut the class
+- Processes at compile time or run-time for special processing
+
+Scanning for Component Classes
+- Spring will can your Java classes for special annotations
+- automatically register the beans in the Spring container
+
+Development Process
+1. Enable component scannig in Spring config file
+  <context:component-scan base-package="<package>" />
+2. Add the @Component Annotation to your Java classes
+3. Retrieve bean from Spring container
+
+
+Default Bean Id
+- the class name, make first letter lower-case

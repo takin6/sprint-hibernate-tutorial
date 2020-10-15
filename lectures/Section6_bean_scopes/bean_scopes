@@ -1,0 +1,37 @@
+Bean Scopes
+- Scope refers to the lifecycle of a bean
+- How long does the bean live?
+- How many instances are created?
+- How is the bean shared?
+
+Default: Singleton
+
+What is a Singleton?
+- Spring container creates only 1 instance of the bean, by default
+- it is cached in memory
+- All requests for the bean will return a shared reference to the same bean
+
+Additional Spring Bean Scopes
+1. Singleton
+2. Prototype: Creates a new bean instance for each container request
+3. Request: Scoped to an HTTP web request. ONly used for web apps
+4. Session: Scoped to an HTTP web session. Only used for web apps
+5. Global-session: Scopes to a global HTTP web session. Only used for web apps.
+
+Bean Lifecycle in Detail
+- Bean Lifecycle
+Container started -> bean instantiated -> dependencies injected -> Internal Spring Processing -> Your Custom Init Method
+-> Bean is Ready for Use | Conatiner is shutdown -> Your Custom Destroy Method -> Stop
+
+Bean Lifecycle Methods / Hooks
+- You can add custom code during bean initialization / bean destruction
+    - Calling custom business logic methods
+    - Setting up Handles to resources (db, sockets, file)
+
+Notes on Lifecycle Methods
+- For "prototype" scoped beans, Spring does not call the destroy method.
+  Spring does not manage the complete lifecycle of a prototype bean
+- Implementing DisposableBean to the specified bean enables Spring to call destroy-method
+
+
+

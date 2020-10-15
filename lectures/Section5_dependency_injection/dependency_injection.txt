@@ -1,0 +1,35 @@
+Dependency Injection
+- The dependency inversion principle. The client delegates to calls to another object the responsibility of providing its dependencies
+
+- give me a "Car" -> Car Factory (Assemble the car for you) -> returns a car
+- "dependency" == "helper objects" (other objects that it needs to perform it's operation)
+- outsource the construction and injection of your object to an external entity
+
+Injection Types
+- There are many types of injection with Spring
+- We will cover the two most common
+    - Constructor Injection
+    - Setter Injection
+    - Literal Injection
+    - Auto-wiring
+
+Development Process- Constructor Injection
+1. Define the dependency interface and class
+2. Create a constructor in your calss for injections
+3. Configure the dependency injection in Spring config file
+
+Setter Injection
+- Spring framework will inject your dependencies by calling setter methods on your class
+
+Development Process- Setter Injection
+1. Create setter methods in our class for injections
+2. Configure the dependency injection in Spring config file
+
+Development Process - Literal Injection
+1. Create setter methods in your class for injections
+2. Configure the injection in Spring config file
+
+Development Process - Property File Injection
+1. Create Properties File
+2. Load Properties File in Spring Config file
+3. Reference values from Properties files

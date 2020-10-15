@@ -1,0 +1,7 @@
+Read HTML Form Data with @RequestForm Annotation
+- @RequestParam: allow you to read form data, and automatically bind it to a parameter coming into your method
+
+Adding Request Mappings to Controller
+- Serves as parent mapping for controller
+- All request mapping on method on methods in the controller are relative
+- Similar to folder directory structures

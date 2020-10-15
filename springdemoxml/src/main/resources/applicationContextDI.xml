@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- load the properties file: sport.properties -->
+    <context:property-placeholder location="classpath:sport.properties" />
+
+    <!-- define the dependency -->
+    <!-- HappyFortuneService myFortuneService = new HappyFortuneService() -->
+    <bean id="myFortuneService" class="com.example.dependencyInjectionDemo.HappyFortuneService"></bean>
+
+    <!-- BaseballCoach myCoach = new BaseballCoach(myFortuneService) -->
+    <bean id="MyCoach" class="com.example.dependencyInjectionDemo.TrackCoach">
+        <constructor-arg ref="myFortuneService" />
+    </bean>
+
+    <bean id="randomFortuneService" class="com.example.dependencyInjectionDemo.RandomFortuneService"></bean>
+    <bean id="GolfCoach" class="com.example.dependencyInjectionDemo.GolfCoach">
+        <constructor-arg ref="randomFortuneService" />
+    </bean>
+
+    <bean id="myCricketCoach" class="com.example.dependencyInjectionDemo.CricketCoach">
+        <!-- capitalize first letter of property name: setFortuneService -->
+        <!-- CricketCoach myCricketCoach = new CricketCoach(); -->
+        <!-- myCricketCoach.setFortuneService(myFortuneService); -->
+        <property name="fortuneService" ref="myFortuneService" />
+
+<!--        <property name="emailAddress" value="thebestcoarch@example.com" />-->
+<!--        <property name="team" value="Sunrisers Hyderabad" />-->
+        <property name="emailAddress" value="${foo.email}" />
+        <property name="team" value="${foo.team}" />
+    </bean>
+
+</beans>

@@ -1,0 +1,75 @@
+Demo Example
+- Coach -> FortuneService
+- New Helper (dependency): FortuneService
+
+===================================================================================================
+What is Spring AutoWiring?
+- For dependency injection, Spring can use auto-wiring.
+  Spring can automatically wire up your objects together
+- Spring will look for a class that matches the property
+  - matches by type: class or interface
+- Spring will inject it automatically ... hence it is autowired
+
+Autowiring Example Approach
+- Inject FortuneService into Coach implementation
+- Sprint will scan @Components
+- Anyone implements Fortuneservice interface???
+- If so, let's inject them. For example: HappyFortuneService
+
+===================================================================================================
+Autowiring Injection Types
+- Constructor Injection
+- Setter Injection
+- Method Injection
+- Field Injections
+
+Development Process: Constructor Injection
+1. Define the dependency interface and class
+2. Create a constructor in your class for injections
+3. Configure and dependency injection with @Autowiried
+
+Notes on Construstor Injection
+As of Spring Framework 4.3, an @Autowired annotation on such a constructor is no longer necessary
+if the target bean only defines one constructor to begin with. However, if several constructors are available,
+at least one must be annotated to teach the container which one to use.
+
+Field Injections
+- Inject dependencies by setting field values on your class directly
+- even private fields
+- Accomplished by using Java Reflection
+
+Development Process: Field Injection
+1. Configure the DI with Autowired Annotation
+    - Applied directly to the field
+    - No need for setter methods
+
+Which Injection Type Should You Use??
+- Choose a style: Stay consistent in your project
+- Provides the same functionality
+
+=================================================================================
+Annotation Autowiring and Qualifiers
+- What if they are multiple FortuneService Implementations????
+- @Qualifier Annotation: tell spring which implementation to use.
+
+Injection Types
+- Can apply @Qualifier annotation to
+    - Constructor, setter, field injection!s
+
+=================================================================================
+Annotations - Default Bean Names - The Special Case
+- If the annotation's value doesn't indicate a bean name, an appropriate name will be built based on the short name of the class (with the first letter lower-cased).
+  ex) HappyFortuneService --> happyFortuneService
+- special case of when BOTH the first and second characters of the class name are upper case, then the name is NOT converted.
+  ex) RESTFortuneService --> RESTFortuneService
+- Behind the scenes, Spring uses the Java Beans Introspector to generate the default bean name.
+  https://docs.oracle.com/javase/8/docs/api/java/beans/Introspector.html#decapitalize(java.lang.String)
+
+=================================================================================
+FAQ: How to inject properties file using Java annotations
+1. Create a properties file to hold your properties. It will be a name value pair.
+2. Load the properties file in the XML config file.
+3. Inject the properties values into your Swim Coach: SwimCoach.java (use @Value annotation)
+
+
+
