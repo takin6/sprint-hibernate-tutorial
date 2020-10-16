@@ -1,0 +1,39 @@
+Retrieving Java Object with Hibernate
+- use the primary key
+Student myStudent = session.get(Student.class, theStudent.getId());
+
+Query Language: HQL(Hibernate Query Language)
+- Retrieving all students
+// from <ClassName>
+List<Student> theStudents = session.createQuery("from Student").getResultList();
+- where
+List<Student> theStudents = session.createQuery("from Student s where s.lastName='Dow'").getResultList();
+- OR
+List<Student> theStudents = session.createQuery("from Student s where s.lastName='Dow'" + " OR s.firstName='Duffy'").getResultList();
+
+=================================================================
+FAQ: How To View Hibernate SQL Parameter Values
+https://www.udemy.com/course/spring-hibernate-tutorial/learn/lecture/5835894#overview
+
+=================================================================
+Updating Objects
+- Setting a value
+Student myStudent = session.get(Student.class, studentId);
+// update first name
+myStudent.setFirstName("xxxx");
+session.getTransaction().commit();
+
+- use HQL queries
+session.createQuery("update Student set email='foo@gmail.com').executeUpdate();
+
+=================================================================
+Deleting Objects
+- session.delete(myStudent);
+- HQL - session.createQuery("delete from Student where id=2") executeUpdate();
+
+=================================================================
+
+FAQ: How to read Dates with Hibernate
+https://www.udemy.com/course/spring-hibernate-tutorial/learn/lecture/7314676#overview
+
+

@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class CreateStudentDemo {
+public class DeleteStudentDemo {
 
     public static void main(String[] args) {
         // Create session factory
@@ -14,25 +14,25 @@ public class CreateStudentDemo {
                 .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
 
-        // Create Session
-        Session session = factory.getCurrentSession();
 
         try {
-            // use the session object to save Java object
-            // Create a student object
-            System.out.println("Creating new student object...");
-            Student tempStudent = new Student("Taka", "Inoue", "takayuki.inoue@example.com");
-
-            // start a transaction
+            int studentId=1;
+            Session session = factory.getCurrentSession();
             session.beginTransaction();
 
-            // save the student object
-            System.out.println("Saving the student...");
-            session.save(tempStudent);
+            System.out.println("\nGetting Student with id: " + studentId);
+//            Student myStudent = session.get(Student.class, studentId);
+//
+//            // delete the student
+//            System.out.println("Deleting student: " + myStudent);
+//            session.delete(myStudent);
+
+            // delete student id=2
+            System.out.println("Deleting student id=2");
+            session.createQuery("delete from Student where id=2").executeUpdate();
 
             // commit transaction
             session.getTransaction().commit();
-
             System.out.println("Done");
         } finally {
             factory.close();
